@@ -130,7 +130,11 @@ function closeImg() {
             miss++;
             if (miss<10) {
                 missVal.innerText = "0"+miss
-            }else{
+            }
+            else if (miss>=10 && miss <= 15) {
+                missVal.innerText = miss
+            }
+            else{
                 restart();
                 refresh();                
             }
