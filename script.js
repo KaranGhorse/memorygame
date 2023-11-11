@@ -1,5 +1,6 @@
-var scoreCount = 0;
+/* ****************************************************** */
 
+var scoreCount = 0;
 
 var arr = [
     "assets/Babybear.jpg",
@@ -52,7 +53,7 @@ function timer() {
 
         }
         else {
-            // countTime = 60;
+            
             clearInterval(startTime)
             t++
             gameTimeMin.innerHTML=t
@@ -68,8 +69,7 @@ var winBox = document.getElementById('win')
 var wfinalScore = document.getElementById('Wf-score');
 var rfinalScore = document.getElementById('Rf-score');
 var over = document.getElementById('over')
-// var resTag = document.querySelector('.restart-tag')
-// console.log(finalScore);
+
 
 function restart() {
     resBox.style.display = 'block';
@@ -79,9 +79,54 @@ function restart() {
 
 
 function Win() {
+    var winRate = document.querySelector(".win-rate");
+    var starSolid = '<i class="fa-solid fa-star"></i>'
+    var starReg = '<i class="fa-regular fa-star"></i>'
     winBox.style.display = 'block';
     over.style.display = 'block';
     wfinalScore.innerText = scoreCount;
+
+    if (miss>=18) {
+        winRate.innerHTML=''
+        winRate.innerHTML=starSolid;
+        for(let i=0;i<4;i++){
+            winRate.innerHTML += starReg;
+        }
+    }
+    else if (miss>=14 && miss<18) {
+        winRate.innerHTML=''
+        for(let i=0;i<2;i++){
+            winRate.innerHTML += starSolid;
+        }
+        for(let i=0;i<3;i++){
+            winRate.innerHTML += starReg;
+        }
+    }
+    else if (miss>=9 && miss<14) {
+        winRate.innerHTML=''
+        for(let i=0;i<3;i++){
+            winRate.innerHTML += starSolid;
+        }
+        for(let i=0;i<2;i++){
+            winRate.innerHTML += starReg;
+        }
+    }
+    else if (miss>=7 && miss<9) {
+        winRate.innerHTML=''
+        for(let i=0;i<4;i++){
+            winRate.innerHTML += starSolid;
+        }
+        for(let i=0;i<1;i++){
+            winRate.innerHTML += starReg;
+        }
+    }
+    else{
+        winRate.innerHTML=''
+        for(let i=0;i<5;i++){
+            winRate.innerHTML += starSolid;
+        }
+      
+    }
     
 }
 
@@ -92,9 +137,7 @@ var backimgs = [2];
 var arr = [2]
 var flag = 0
 game.addEventListener("click", function palat(dets) {
-    // console.log();
     frontimgs[flag] = document.getElementById(`${dets.target.id}`)
-    // console.log()
     frontimgs[flag].style.transform = "rotateY(90deg)"
     backimgs[flag] = document.getElementById(`${dets.target.offsetParent.childNodes[0].id}`)
     backimgs[flag].style.transform = "rotateY(0deg)"
@@ -113,10 +156,8 @@ var scoreVal = document.getElementById("score-count");
 function closeImg() {
     setTimeout(() => {
         if (arr[0] == arr[1]) {
-            console.log("match");
             scoreCount += 10;
             if (scoreCount == 80) {
-                // console.log(scoreCount);
                 refresh()
                 Win();
             }
@@ -142,6 +183,5 @@ function closeImg() {
         flag = 0
     }, 500);
 }
-// console.log(scoreCount);
-//*********************************************** */
+/*********************************************** */
 
